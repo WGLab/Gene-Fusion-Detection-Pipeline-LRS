@@ -11,3 +11,9 @@ Gene Fusions (GFs) occur when two distinct genes are fused together, forming a n
 - **Red Arrows:** Computational GF detection and analysis pipeline
 - **Green Arrows:** Comparison to the results initially obtained by the DGD at CHOP
 - **Blue Arrows:** Additional Potentially Novel GFs validated by PCR and Sanger Sequencing, followed by generation of fusion cDNA transcripts for functional validation in the Drosophila model for functional implications; potential incorporation into future GF analysis
+
+
+## Contact
+If you have any questions/issues/bugs, please post them on GitHub. 
+
+
