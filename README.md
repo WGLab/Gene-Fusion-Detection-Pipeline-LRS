@@ -27,9 +27,49 @@ Python (3.9)
 
 ## Reference Requirements
 ```
-Reference Genome: hg38
-Comprehensive gene annotation (BED & GTF): gencode.v44.annotation.gtf 
+[Reference Genome: hg38](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_000001405.15/)
+[Comprehensive gene annotation from GENCODE (BED & GTF)](https://www.gencodegenes.org/human/) (and/or the most recent version)
 ```
+
+# Input File Types
+The pipeline is designed to take in a single input file, which can be in either `FAST5`, `FASTQ`, or `FASTA` format. If the input is in `FAST5` format, it is recommended to use Guppy6 (Available online: https://community.nanoporetech.com) to perform basecalling first, with the default basecalling read Q-score filtering threshold of 7, and then convert the FASTQ files for downstream analysis. If dealing with multiple `FASTQ` or `FASTA` files, it is best to merge the files using the `cat` command beforehand.  
+
+#### Note: Each example command may take some additional time ran as is, for best results, optimize with the HPC (High-Performance Computing) cluster/computer. 
+
+
+## Script Descriptions 
+```
+00_dir_setup.sh
+01_redo_basecalling .sh
+02_combine_cutadapt.sh
+03_alignment_hg38.sh
+04_longreadsum.sh
+05_FusionSeeker.sh
+05_JAFFA.sh
+05_LongGF.sh
+06_GF_criteria.py
+```
+
+### 0. Initialization of Directories
+1. **Goal:** Generate the necessary folders to hold the downstream analysis results for each program.
+2. **Example Command:** `./ 00_dir_setup.sh`
+3. **Expected Output:** 8 directories, following the numbering and names of the scripts
+```
+01_redo_basecalling
+02_combine_cutadapt
+03_alignment_hg38
+04_longreadsum
+05_JAFFA
+05_LongGF
+05_FusionSeeker
+06_GF_criteria
+```
+
+### 1. Redo Basecalling with Guppy6
+1. **Goal:** Redo the basecalling using a super high accuracy model from Guppy6.
+2. **Example Command:** `./ 01_redo_basecalling .sh`
+3. **Expected Output:** 
+
 
 
 
