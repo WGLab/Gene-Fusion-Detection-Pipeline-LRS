@@ -155,6 +155,21 @@ The pipeline is designed to take in a single input file, which can be in either 
   
 3. **Expected Output:** See below.
 
+| Output File Names      |  | | | 
+| -------------- | ----------- | ----------- | ----------- | 
+| `longgf.100-25-100.txt`      | Min Overlap: 100bp | Bin Size: 25 | Min Map Length: 100bp |
+| `longgf.100-10-100.txt`      | Min Overlap: 100bp | Bin Size: 10 | Min Map Length: 100bp |
+| `longgf.75-25-75.txt`        | Min Overlap: 75bp | Bin Size: 25 | Min Map Length: 75bp  |
+| `longgf.75-10-75.txt`        | Min Overlap: 75bp | Bin Size: 10 | Min Map Length: 75bp   |
+| `longgf.50-25-50.txt`        | Min Overlap: 50bp | Bin Size: 25 | Min Map Length: 50bp   |
+| `longgf.50-10-50.txt`        | Min Overlap: 50bp | Bin Size: 10 | Min Map Length: 50bp   |
+| `longgf.25-25-25.txt`        | Min Overlap: 25bp | Bin Size: 25 | Min Map Length: 25bp   |
+| `longgf.25-10-25.txt`        | Min Overlap: 25bp | Bin Size: 10 | Min Map Length: 25bp   |
+| `longgf.10-25-10.txt`        | Min Overlap: 10bp | Bin Size: 25 | Min Map Length: 10bp   |
+| `longgf.10-10-10.txt`        | Min Overlap: 10bp | Bin Size: 10 | Min Map Length: 10bp   |
+
+
+
 
 
 
