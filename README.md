@@ -12,6 +12,8 @@ Gene Fusions (GFs) occur when two distinct genes are fused together, forming a n
 - **Green Arrows:** Comparison to the results initially obtained by the DGD at CHOP
 - **Blue Arrows:** Additional Potentially Novel GFs validated by PCR and Sanger Sequencing, followed by generation of fusion cDNA transcripts for functional validation in the Drosophila model for functional implications; potential incorporation into future GF analysis
 
+## Pipeline Setup and Script Details
+For comprehensive information on setting up the GF detection pipeline workflow and understanding the scripts, navigate to the [scripts folder](https://github.com/WGLab/Gene-Fusion-Detection-Pipeline-LRS/tree/main/scripts). Further instructions and explanations are available in the dedicated README file.  
 
 ## Contact
 If you have any questions/issues/bugs, please post them on GitHub. 
