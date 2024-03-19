@@ -64,7 +64,8 @@ The pipeline is designed to take in a single input file, which can be in either 
 2. **Example Command:** `bash 01_redo_basecalling.sh sample_name input_dir output_dir basecaller_input config_file num_callers gpu_runners_per_device cpu_threads_per_caller device_cuda`
 - `sample_name`: Enter the name for the sample.
 - `input_dir`: Specify the path to the input directory.
-- `basecaller_input`: Specify the path to the basecaller model 
+- `output_dir`: Specify the full path to 01_redo_basecalling output. 
+- `basecaller_input`: Specify the path to the basecaller model. 
 - `config_file`: Specify the path to the configuration file name.
 - Additional HPC Machine Configuration (Adjust based on your HPC machine specifications):
    - `num_callers`, `gpu_runners_per_device`, `cpu_threads_per_caller`, and `device_cuda` 
@@ -78,9 +79,10 @@ The pipeline is designed to take in a single input file, which can be in either 
 
 ## 2. Combine and Cutadapt `02_combine_cutadapt.sh`
 1. **Goal:** Combine output `FASTQ` files from the "pass" folder of the re-basecalled samples and perform adapter trimming using the Cutadapt.
-2. **Example Command:** `bash 02_combine_cutadapt.sh sample_name pass_input adapter3 adapter5 rev_adapter3 rev_adapter5 error_rate_trim1 error_rate_trim2 num_occurances_trim1 num_occurances_trim2`
+2. **Example Command:** `bash 02_combine_cutadapt.sh sample_name pass_input_dir output_dir adapter3 adapter5 rev_adapter3 rev_adapter5 error_rate_trim1 error_rate_trim2 num_occurances_trim1 num_occurances_trim2`
 - `sample_name`: Enter the desired name for the sample.
-- `pass_input`: Specify the full path to the "pass" folder of the re-basecalled samples.
+- `pass_input_dir`: Specify the full path to the "pass" folder of the re-basecalled samples.
+- `output_dir`: Specify the full path to 02_combine_cutadapt output. 
 - `adapter3`, `adapter5`, `rev_adapter3`, and `rev_adapter5`: Forward and Reverse adapter sequences for trimming.
 - `error_rate_trim1` and `error_rate_trim2`: Cutadapt error rate denoted for both trimming steps. 
 - `num_occurances_trim1` and `num_occurances_trim2`: Reads with fewer than the specified occurrences of a specified adapter were trimmed, denoted for both trimming steps. 
@@ -106,10 +108,11 @@ The pipeline is designed to take in a single input file, which can be in either 
 
 
 ## 3. Alignment to the hg38 Reference `03_alignment_hg38.sh`
-1. **Goal:** Splice aware alignment to the hg38 reference using Minimap2. 
-2. **Script Customization Parameters:**
+1. **Goal:** Splice aware alignment to the hg38 reference using Minimap2.
+2. **Example Command:** `bash 03_alignment_hg38.sh sample_name input_fastq output_dir REF_GENOME REF_SPLICE`
 - `sample_name`: Enter the name for the sample.
 - `input_fastq`: Specify the full path to the final trimmed FASTQ file.
+- `output_dir`: Specify the full path to 03_alignment_hg38 output. 
 - `REF_GENOME`: Specify the full path to the hg38 reference genome file (in FASTA format).
 - `REF_SPLICE`: Specify the full path to the BED file containing splice site annotations for hg38.
 
@@ -130,8 +133,9 @@ The pipeline is designed to take in a single input file, which can be in either 
 
 ## 4. Quality Check Analysis with LongReadSum  `04_longreadsum.sh`
 1. **Goal:** Quality Check Analysis of the mapping to the hg38 reference with LongReadSum
-2. **Script Customization Parameters:**
+2. **Example Command:** `bash 04_longreadsum.sh sample_name output_dir input_BAM long_read_sum_path`
 - `sample_name`: Enter the name for the sample.
+- `output_dir`:  Specify the full path to 04_longreadsum output. 
 - `input_BAM`: Specify the full path to the final trimmed FASTQ file.
 -  `LongReadSum_path` : Specify the full path to the LongReadSum software. 
 3. **Expected Output:** See below.
@@ -148,9 +152,10 @@ The pipeline is designed to take in a single input file, which can be in either 
 
 
 ## 5. Gene Fusion Detection (Part 1/3) with LongGF `05_LongGF.sh`
-1. **Goal:** Gene Fusion detection with LongGF 
-2. **Script Customization Parameters:**
+1. **Goal:** Gene Fusion detection with LongGF
+2. **Example Command:** `bash 05_LongGF.sh sample_name output_dir input_BAM_by_name ref_gtf min_support`
 - `sample_name`: Enter the name for the sample.
+- `output_dir`:  Specify the full path to 05_LongGF output. 
 - `input_BAM`: Specify the full path to the BAM file sorted by read names.
 - `ref_gtf`: Specify the full path to the reference GTF file containing gene annotations.
 - `min_support`: Minimum support for gene fusion detection.
@@ -175,11 +180,12 @@ The pipeline is designed to take in a single input file, which can be in either 
 
 ## 5. Gene Fusion Detection (Part 2/3) with JAFFA `05_JAFFA.sh`
 1. **Goal:** Gene Fusion detection with JAFFA
-2. **Script Customization Parameters:**
+2. **Example Command:** `bash 05_JAFFA.sh sample_name input_fastq_gz output_dir JAFFA_bpipe JAFFAL_groovy_file`
 - `sample_name`: Enter the name for the sample.
 - `input_fastq_gz`: Specify the full path to the final trimmed and compressed FASTQ file.
-- `path/to/JAFFA/bpipe`: Specify the path to the JAFFA Bpipe executable.
-- `path/to/JAFFAL.groovy`: Specify the path to the JAFFA Long Read pipeline script (JAFFAL.groovy).
+- `output_dir`:  Specify the full path to 05_JAFFA output. 
+- `JAFFA_bpipe`: Specify the path to the JAFFA bpipe executable (path/to/JAFFA/bpipe).
+- `JAFFAL_groovy_file`: Specify the path to the JAFFA Long Read pipeline script (JAFFAL.groovy).
   
 3. **Expected Output:** See below.
 
@@ -198,9 +204,10 @@ The pipeline is designed to take in a single input file, which can be in either 
 
 ## 5. Gene Fusion Detection (Part 3/3) with FusionSeeker `05_FusionSeeker.sh`
 1. **Goal:** Gene Fusion detection with FusionSeeker
-2. **Script Customization Parameters:**
+2. **Example Command:** `bash 05_FusionSeeker.sh sample_name output_dir bam_input ref_gtf ref_genome`
 - `sample_name`: Enter the name for the sample.
-- `input_bam`: Specify the full path to the input BAM file sorted by position.
+- - `output_dir`:  Specify the full path to 05_FusionSeeker output. 
+- `bam_input`: Specify the full path to the input BAM file sorted by position.
 - `ref_gtf`: Specify the full path to the reference GTF file containing gene annotations.
 -  `ref_genome`: Specify the full path to the hg38 reference genome file (in FASTA format).
   
