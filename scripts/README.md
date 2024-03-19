@@ -18,9 +18,10 @@ Python (3.9)
 1. [Reference Genome: hg38](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_000001405.15/)
 2. [BED & GTF Comprehensive Gene Annotation from GENCODE](https://www.gencodegenes.org/human/) (best to use the most recent version)
 3. CHOP Fusion Panel Genes
-4. Mitelman Gene Fusion Database
-5. COSMIC Gene Fusion Database
-6. ChimerDB Gene Fusion Database
+4. Cancer Census Genes
+5. Mitelman Gene Fusion Database
+6. COSMIC Gene Fusion Database
+7. ChimerDB Gene Fusion Database
 
 
 ## Input File Types
