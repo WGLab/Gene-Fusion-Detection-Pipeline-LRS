@@ -17,11 +17,11 @@ Python (3.9)
 ## References
 1. [Reference Genome: hg38](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_000001405.15/)
 2. [BED & GTF Comprehensive Gene Annotation from GENCODE](https://www.gencodegenes.org/human/) (best to use the most recent version)
-3. CHOP Fusion Panel Genes (CHOP_Fusion_Panel_genes.txt)
-4. Cancer Census Genes (Cancer_Census_and_synonyms.txt)
-5. Mitelman Gene Fusion Database Fusions (Mitelman_fusion_names.txt)
-6. COSMIC Gene Fusion Database Fusions (COSMIC_fusion_genes.tsv)
-7. ChimerDB Gene Fusion Database Fusions (ChimerDB4.0_fusions.txt)
+3. [CHOP Fusion Panel Genes](https://github.com/WGLab/Gene-Fusion-Detection-Pipeline-LRS/blob/main/scripts/CHOP_Fusion_Panel_genes.txt)
+5. [Cancer Census Genes](https://github.com/WGLab/Gene-Fusion-Detection-Pipeline-LRS/blob/main/scripts/Cancer_Census_and_synonyms.txt)
+8. [ChimerDB Database Gene Fusions](https://github.com/WGLab/Gene-Fusion-Detection-Pipeline-LRS/blob/main/scripts/ChimerDB4.0_fusions.txt)
+9. [COSMIC Database Gene Fusions](https://github.com/WGLab/Gene-Fusion-Detection-Pipeline-LRS/blob/main/scripts/COSMIC_fusion_genes.tsv)
+10. [Mitelman Database Gene Fusions](https://github.com/WGLab/Gene-Fusion-Detection-Pipeline-LRS/blob/main/scripts/Mitelman_fusion_names.txt)
 
 
 
