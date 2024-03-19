@@ -206,7 +206,7 @@ The pipeline is designed to take in a single input file, which can be in either 
 1. **Goal:** Gene Fusion detection with FusionSeeker
 2. **Example Command:** `bash 05_FusionSeeker.sh sample_name output_dir bam_input ref_gtf ref_genome`
 - `sample_name`: Enter the name for the sample.
-- - `output_dir`:  Specify the full path to 05_FusionSeeker output. 
+- `output_dir`:  Specify the full path to 05_FusionSeeker output. 
 - `bam_input`: Specify the full path to the input BAM file sorted by position.
 - `ref_gtf`: Specify the full path to the reference GTF file containing gene annotations.
 -  `ref_genome`: Specify the full path to the hg38 reference genome file (in FASTA format).
@@ -230,9 +230,20 @@ The pipeline is designed to take in a single input file, which can be in either 
 - Number of Supporting Reads
 - Cross Reference to known Fusion Literature
   
-2. **Script Customization Parameters:**
-- 
+2. **Example Command:** `python 06_GF_criteria.py ref_gtf_annotation sample_number artifact_filter_path input_path input_jaffa input_fusion_seek bam_path genes_of_interest num_supporting_reads mitelman_db_gfs chimer_db_gfs cosmic_db_gfs`
+- `ref_gtf_annotation`: path/to/gencode.v44.annotation.bed
+- `sample_name`: Enter the name for the sample.
+- `artifact_filter_path`: Specify full path to 06_GF_criteria output.
+- `input_path`: Specify the full path to the sample_name 05_LongGF folder containing the different outputs of the LongGF parameters.
+- `input_jaffa`: Specify the full path to jaffa_results.csv
+- `input_fusion_seek`: Specify the full path to confident_genefusion.txt
+- `bam_path`: Specify the full path to the sorted by position BAM file.
+- `genes_of_interest`: Specify the full path to the genes of interest file to prioritize the results.
+- `num_supporting_reads`: Specify the minimum number of supporting reads threshold.
+- `mitelman_db_gfs`: Specify the path to mitelman_db_fusion_names.txt
+- `chimer_db_gfs`: Specify the path to the ChimerDB4.0_fusions.txt
+- `cosmic_db_gfs`: Specify the full path to the cosmic_fusion_genes.tsv
   
-3. **Expected Output:** See below.
+4. **Expected Output:** See below.
 
 
