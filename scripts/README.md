@@ -1,4 +1,4 @@
-# GF Detection Pipeline Requirements and Scripts
+# GF Detection Pipeline Requirements, Scripts, and References
 This section provides an overview of the programs, reference files, input files, and scripts required for the GF detection pipeline workflow. Each script has a brief description of its goal and expected output. We suggest creating a conda environment for running the programs, `conda create -n GF_detection_LRS python=3.9`, and optimizing script runtime on the High-Performance Computing (HPC) cluster/computer for the best results.
 
 ## Programs 
