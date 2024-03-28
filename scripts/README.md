@@ -122,11 +122,11 @@ The pipeline is designed to take in a single input file, which can be in either 
 
 | Output File Names      | Description |
 | -------------- | ----------- |
-| `<sample_name>-guppy6.bam`                        | BAM file containing alignment information.        |
-| `<sample_name>-guppy6.sam`                        | SAM file containing alignment information.        |
-| `<sample_name>-guppy6.sorted_name.bam`            | BAM file sorted by read names.                    |
-| `<sample_name>-guppy6.sorted_position.bam`        | BAM file sorted by genomic position.              |
-| `<sample_name>-guppy6.sorted_position.bam.bai`    | Index file for the sorted BAM file by position.   |
+| `sample_name-guppy6.bam`                        | BAM file containing alignment information.        |
+| `sample_name-guppy6.sam`                        | SAM file containing alignment information.        |
+| `sample_name-guppy6.sorted_name.bam`            | BAM file sorted by read names.                    |
+| `sample_name-guppy6.sorted_position.bam`        | BAM file sorted by genomic position.              |
+| `sample_name-guppy6.sorted_position.bam.bai`    | Index file for the sorted BAM file by position.   |
 
 
 
@@ -138,7 +138,7 @@ The pipeline is designed to take in a single input file, which can be in either 
 2. **Example Command:** `bash 04_longreadsum.sh sample_name output_dir input_BAM long_read_sum_path`
 - `sample_name`: Enter the name for the sample.
 - `output_dir`:  Specify the full path to 04_longreadsum output. 
-- `input_BAM`: Specify the full path to the final trimmed FASTQ file.
+- `input_BAM`: Specify the full path to the aligned BAM file.
 -  `LongReadSum_path` : Specify the full path to the LongReadSum software. 
 3. **Expected Output:** See below.
 
