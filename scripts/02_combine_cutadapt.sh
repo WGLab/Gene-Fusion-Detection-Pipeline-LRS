@@ -34,7 +34,7 @@ cd "${sample_name}" || exit
 # Combine files
 cat $pass_input_dir/f*.fastq > ${sample_name}_pass_reads.fastq
 
-CUTADAPT_INPUT="${pass_input_dir}/${sample_name}_pass_reads.fastq"
+CUTADAPT_INPUT="${output_dir}/${sample_name}/${sample_name}_pass_reads.fastq"
 
 
 # Cutadapt Adapter Trimming 
