@@ -24,7 +24,7 @@ ref_genome=$5  # <path/to/hg38.fa>
 
 
 #FusionSeeker
-fusionseeker --bam $bam_input --datatype nanopore --gtf $ref_gtf $ref_genome
+fusionseeker --bam $bam_input --datatype nanopore --gtf $ref_gtf --ref $ref_genome
 
 
 
