@@ -232,13 +232,13 @@ The pipeline is designed to take in a single input file, which can be in either 
 - Number of Supporting Reads
 - Cross Reference to known Fusion Literature
   
-2. **Example Command:** `python 06_GF_criteria.py ref_gtf_annotation sample_number artifact_filter_path input_path input_jaffa input_fusion_seek bam_path genes_of_interest num_supporting_reads mitelman_db_gfs chimer_db_gfs cosmic_db_gfs`
+2. **Example Command:** `python 06_GF_criteria.py ref_gtf_annotation sample_name artifact_filter_path input_longgf input_jaffa input_fusion_seek bam_path genes_of_interest num_supporting_reads mitelman_db_gfs chimer_db_gfs cosmic_db_gfs`
 - `ref_gtf_annotation`: path/to/gencode.v44.annotation.bed
-- `sample_name`: Enter the name for the sample.
-- `artifact_filter_path`: Specify full path to 06_GF_criteria output.
-- `input_path`: Specify the full path to the sample_name 05_LongGF folder containing the different outputs of the LongGF parameters.
-- `input_jaffa`: Specify the full path to jaffa_results.csv
-- `input_fusion_seek`: Specify the full path to confident_genefusion.txt
+- `sample_name`: Enter the name of the sample.
+- `artifact_filter_path`: Specify full path to 06_GF_criteria output folder.
+- `input_longgf`: Specify the full path to the sample_name 05_LongGF folder containing the different outputs of the LongGF parameters.
+- `input_jaffa`: Specify the full path to 05_JAFFA folder. 
+- `input_fusion_seek`: Specify the full path to 05_FusionSeeker folder. 
 - `bam_path`: Specify the full path to the sorted by position BAM file.
 - `genes_of_interest`: Specify the full path to the genes of interest file to prioritize the results.
 - `num_supporting_reads`: Specify the minimum number of supporting reads threshold.
@@ -264,7 +264,7 @@ The pipeline is designed to take in a single input file, which can be in either 
 |`all_fusions_genes_of_interest_filtered.tsv`            | Gene fusions reported from all LongGF, JAFFA, and FusionSeeker only with at least one of the genes are within the specified gene of interest list.     |
 |`all_fusions_num_support_reads_filtered.tsv`            | Gene fusions reported from all LongGF, JAFFA, and FusionSeeker only with at least one of the genes are within the specified gene of interest list, filtered on the set minimum number of supporting reads.         |
 |`literature_cross_referenced_output.tsv`                | Gene fusions reported from all detection programs, with at least one gene of interest, filtered on the set minimum number of supporting reads, cross referenced in fusion literature.      |
-|`final_output.tsv`                                      | All gene fusions reported from all detection programs, with at least one gene of interest, filtered on the set minimum number of supporting reads with their corresponding supporting ReadIDs.         |
+|`final_output.tsv`                                      | All gene fusions reported from all detection programs, with at least one gene of interest, filtered on the set minimum number of supporting reads with their corresponding supporting ReadIDs.|
 |`final_output_no_readIDs.tsv`                           | All gene fusions reported from all detection programs, with at least one gene of interest, filtered on the set minimum number of supporting reads without their corresponding supporting ReadIDs.           |
 
 
