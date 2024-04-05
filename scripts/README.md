@@ -232,7 +232,7 @@ The pipeline is designed to take in a single input file, which can be in either 
 - Number of Supporting Reads
 - Cross Reference to known Fusion Literature
   
-2. **Example Command:** `python 06_GF_criteria.py ref_gtf_annotation sample_name artifact_filter_path input_longgf input_jaffa input_fusion_seek bam_path genes_of_interest num_supporting_reads mitelman_db_gfs chimer_db_gfs cosmic_db_gfs`
+2. **Example Command:** `python 06_GF_criteria.py ref_gtf_annotation sample_name artifact_filter_path input_longgf input_jaffa input_fusion_seek bam_path genes_of_interest num_supporting_reads mitelman_db_gfs chimer_db_gfs cosmic_db_gfs > 06_criteria.out`
 - `ref_gtf_annotation`: path/to/gencode.v44.annotation.bed
 - `sample_name`: Enter the name of the sample.
 - `artifact_filter_path`: Specify full path to 06_GF_criteria output folder.
