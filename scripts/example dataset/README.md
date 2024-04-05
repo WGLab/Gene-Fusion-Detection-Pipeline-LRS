@@ -47,7 +47,7 @@ In the folder where the downloaded scripts are stored, run the `00_dir_setup.sh`
  
 **Example Command:** 
 ```
-bash -o 01_redo_basecalling.out 01_redo_basecalling.sh example_sample14 /path/to/subset_example_sample14_all 01_redo_basecalling /path/to/guppy_basecaller config_file.cfg num_callers gpu_runners_per_device cpu_threads_per_caller device_cuda
+bash 01_redo_basecalling.sh example_sample14 /path/to/subset_example_sample14_all 01_redo_basecalling /path/to/guppy_basecaller config_file.cfg num_callers gpu_runners_per_device cpu_threads_per_caller device_cuda
 ```
 
 **Expected Output:** Within the '01_redo_basecalling' folder 
@@ -73,7 +73,7 @@ There is one fastq file within the pass folder named, `fastq_runid_d1615b727f9b8
 
 **Example Command:** 
 ```
-bash -o 02_combine_cutadapt.out 02_combine_cutadapt.sh example_sample14 /path/to/01_redo_basecalling/example_sample14/01_redo_basecalling/example_sample14/pass /mnt/isilon/wang_lab/karly/project/Marilyn-Li-Samples/gene_fusion_samples1-29/example_sample14/02_combine_cutadapt AGATCGGAAGAGCACACGTCTGAACTCCAGTCA ACACTCTTTCCCTACACGACGCTCTTCCGATCT AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT TGACTGGAGTTCAGACGTGTGCTCTTCCGATCT 0.3 0.3 10 20
+bash 02_combine_cutadapt.sh example_sample14 /path/to/01_redo_basecalling/example_sample14/pass /path/to/02_combine_cutadapt AGATCGGAAGAGCACACGTCTGAACTCCAGTCA ACACTCTTTCCCTACACGACGCTCTTCCGATCT AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT TGACTGGAGTTCAGACGTGTGCTCTTCCGATCT 0.3 0.3 10 20
 ```
 
 **Expected Output:** Within the '02_combine_cutadapt' folder 
@@ -127,7 +127,7 @@ Total written (filtered):        220,695 bp (72.5%)
 
 **Example Command:** 
 ```
-bash -o 03_alignment_hg38.out 03_alignment_hg38.sh example_sample14 /path/to/02_combine_cutadapt/example_sample14/example_sample14_pass_reads_final_trimmed.fastq  /path/to/example_sample14/03_alignment_hg38 /path/to/ref_genome_hg38/hg38.fa /path/to/gene_fusion_gtf_ref/gencode.v44.annotation.bed
+bash 03_alignment_hg38.sh example_sample14 /path/to/02_combine_cutadapt/example_sample14/example_sample14_pass_reads_final_trimmed.fastq  /path/to/03_alignment_hg38 /path/to/ref_genome_hg38/hg38.fa /path/to/gencode.v44.annotation.bed
 ```
 
 
@@ -149,7 +149,7 @@ example_sample14-guppy6.sam  example_sample14-guppy6.sorted_position.bam
 
 **Example Command:** 
 ```
-bash -o 04_longreadsum.out 04_longreadsum.sh example_sample14 /path/to/example_sample14/04_longreadsum /path/to/example_sample14/03_alignment_hg38/example_sample14/example_sample14-guppy6.bam /path/to/LongReadSum
+bash 04_longreadsum.sh example_sample14 /path/to/04_longreadsum /path/to/03_alignment_hg38/example_sample14/example_sample14-guppy6.bam /path/to/LongReadSum
 ```
 
 **Expected Output:** Within the '04_longreadsum' folder 
@@ -193,5 +193,148 @@ Total number of soft clipped bases      168149
 
 
 
+## 5. Gene Fusion Detection (Part 1/3) with LongGF `05_LongGF.sh`
+**Example Command:** `bash 05_LongGF.sh sample_name output_dir input_BAM_by_name ref_gtf min_support`
+- `sample_name`: Enter the name for the sample.
+- `output_dir`:  Specify the full path to 05_LongGF output. 
+- `input_BAM`: Specify the full path to the BAM file sorted by read names.
+- `ref_gtf`: Specify the full path to the reference GTF file containing gene annotations.
+- `min_support`: Minimum support for gene fusion detection.
+
+
+**Example Command:** 
+```
+bash 05_LongGF.sh example_sample14 /path/to/05_LongGF /path/to/03_alignment_hg38/example_sample14/example_sample14-guppy6.sorted_name.bam /path/to/gencode.v44.annotation.gtf 1
+```
+
+**Expected Output:** Within the '04_longreadsum' folder 
+```
+longgf.100-10-100.txt  longgf.10-10-10.txt  longgf.25-10-25.txt  longgf.50-10-50.txt  longgf.75-10-75.txt
+longgf.100-25-100.txt  longgf.10-25-10.txt  longgf.25-25-25.txt  longgf.50-25-50.txt  longgf.75-25-75.txt
+```
+
+
+**Example Contents of `longgf.100-10-100.txt`:**
+```
+GF      KIAA1549:BRAF 10 10 supporting reads=10/10 138867973:9;138867977:1 140787583:10 chr7:138867973 10/0:24:34 chr7:140787583 0/10:24:185
+        138867973(-chr7:138867973-138869738/03dec4eb-8641-40bc-9c86-61c02705affa:18-370)1 140787583(-chr7:140781667-140787583/370-568)1
+        138867973(+chr7:138867973-138869586/2e24c422-39dd-4b6f-9a9b-ccb98b3cb3c4:201-400)1 140787583(+chr7:140781663-140787583/0-201)1
+        138867973(-chr7:138867973-138869575/43cd9a89-9470-47f0-a43d-bdf81691fb51:21-215)1 140787583(-chr7:140783102-140787583/215-419)1
+        138867973(+chr7:138867973-138868079/47d3a423-8a28-47bd-a50e-381ec6be022f:199-305)1 140787583(+chr7:140781663-140787583/0-199)1
+        138867973(+chr7:138867973-138869693/7e56e365-97f1-46fa-bb1c-3ccb85045ea8:198-514)1 140787583(+chr7:140781663-140787583/0-198)1
+        138867977(-chr7:138867977-138868129/b0c890e6-de00-488c-b208-f943cefa23fe:32-185)1 140787583(-chr7:140783084-140787583/188-299)1
+        138867973(-chr7:138867973-138871335/b0e9acd9-8e33-45f9-91d9-cefcef3063f3:17-565)1 140787583(-chr7:140781663-140787583/565-772)1
+        138867973(-chr7:138867973-138868081/c01d20d4-b3fc-47a3-b6ca-1f33fa766df4:21-128)1 140787583(-chr7:140781663-140787583/128-329)1
+        138867973(+chr7:138867973-138871212/c63aafef-89ab-4c0f-aa5c-a0025b8e5957:198-624)1 140787583(+chr7:140781663-140787583/0-198)1
+        138867973(+chr7:138867973-138868129/ffd7691d-da58-4bc5-a591-36a250797cae:201-358)1 140787583(+chr7:140781663-140787583/0-201)1
+SumGF   KIAA1549:BRAF 10 chr7:138867973 chr7:140787583
+GF      BRAF:BCR 1 1 supporting reads=1/1 140783032:1 23310417:1 chr7:140783032 1/0:2:185 chr22:23310417 0/1:2:1
+        140783032(+chr7:140783032-140794348/6272f2c5-e8d8-4902-9ddd-74cbc256eca5:227-429)1 23310417(+chr22:23295078-23310417/18-243)1
+SumGF   BRAF:BCR 1 chr7:140783032 chr22:23310417
+```
+
+
+
+
+
+
+
+## 5. Gene Fusion Detection (Part 2/3) with JAFFA `05_JAFFA.sh`
+**Example Command:** `bash 05_JAFFA.sh sample_name input_fastq_gz output_dir JAFFA_bpipe JAFFAL_groovy_file`
+- `sample_name`: Enter the name for the sample.
+- `input_fastq_gz`: Specify the full path to the final trimmed and compressed FASTQ file.
+- `output_dir`:  Specify the full path to 05_JAFFA output. 
+- `JAFFA_bpipe`: Specify the path to the JAFFA bpipe executable (path/to/JAFFA/bpipe).
+- `JAFFAL_groovy_file`: Specify the path to the JAFFA Long Read pipeline script (JAFFAL.groovy).
+
+
+
+**Example Command:** 
+```
+bash 05_JAFFA.sh example_sample14 /path/to/02_combine_cutadapt/example_sample14/example_sample14_pass_reads_final_trimmed.fastq.gz /path/to/05_JAFFA /path/to/JAFFA-version-2.3/tools/bpipe-0.9.9.2/bin/bpipe /path/to/JAFFA-version-2.3/JAFFAL.groovy
+```
+
+**Expected Output:** Within the '04_longreadsum' folder 
+```
+checks  commandlog.txt  example_sample14_pass_reads_final_trimmed.fastq  jaffa_results.csv  jaffa_results.fasta
+```
+
+**Example Contents of `jaffa_results.csv`:**
+```
+sample,fusion genes,chrom1,base1,strand1,chrom2,base2,strand2,gap (kb),spanning pairs,spanning reads,inframe,aligns,rearrangement,contig,contig break,classification,known
+example_sample14_pass_reads_final_trimmed.fastq,KIAA1549:BRAF,chr7,138867975,-,chr7,140787584,-,1919.608,0,10,TRUE,TRUE,TRUE,03dec4eb-8641-40bc-9c86-61c02705affa,370,HighConfidence,Yes
+example_sample14_pass_reads_final_trimmed.fastq,KIAA1549:BRAF,chr7,138867975,-,chr7,140783192,-,1915.217,0,33,NA,FALSE,TRUE,0ee394f5-e4a1-4c43-8293-edc332d6b48b,90,LowConfidence,Yes
+```
+
+
+
+
+
+## 5. Gene Fusion Detection (Part 3/3) with FusionSeeker `05_FusionSeeker.sh`
+**Example Command:** `bash 05_FusionSeeker.sh sample_name output_dir bam_input ref_gtf ref_genome`
+- `sample_name`: Enter the name for the sample.
+- `output_dir`:  Specify the full path to 05_FusionSeeker output. 
+- `bam_input`: Specify the full path to the input BAM file sorted by position.
+- `ref_gtf`: Specify the full path to the reference GTF file containing gene annotations.
+-  `ref_genome`: Specify the full path to the hg38 reference genome file (in FASTA format).
+
+**Example Command:** 
+```
+bash 05_FusionSeeker.sh example_sample14 /path/to/05_FusionSeeker /path/to/03_alignment_hg38/example_sample14/example_sample14-guppy6.sorted_position.bam /path/to/gencode.v44.annotation.gtf /path/to/hg38.fa
+```
+
+**Expected Output:** Within the '04_longreadsum' folder 
+```
+clustered_candidate.txt  confident_genefusion.txt  log.txt  poa_workspace  raw_signal  rawsignal.txt
+```
+
+**Example Contents of `confident_genefusion.txt`:**
+```
+KIAA1549        BRAF    11      chr7    138867974       chr7    140787582       GF01    ffd7691d-da58-4bc5-a591-36a250797cae,03dec4eb-8641-40bc-9c86-61c02705affa,1de29aef-bd98-47a1-b866-49843ddf3fdb,2e24c422-39dd-4b6f-9a9b-ccb98b3cb3c4,43cd9a89-9470-47f0-a43d-bdf81691fb51,47d3a423-8a28-47bd-a50e-381ec6be022f,7e56e365-97f1-46fa-bb1c-3ccb85045ea8,b0c890e6-de00-488c-b208-f943cefa23fe,b0e9acd9-8e33-45f9-91d9-cefcef3063f3,c01d20d4-b3fc-47a3-b6ca-1f33fa766df4,c63aafef-89ab-4c0f-aa5c-a0025b8e5957
+```
+
+
+
+
+
+
+
+## 6. Gene Fusion Filtering Criteria `06_GF_criteria.py`
+**Example Command:** `python 06_GF_criteria.py ref_gtf_annotation sample_name artifact_filter_path input_longgf input_jaffa input_fusion_seek bam_path genes_of_interest num_supporting_reads mitelman_db_gfs chimer_db_gfs cosmic_db_gfs > 06_criteria.out`
+- `ref_gtf_annotation`: path/to/gencode.v44.annotation.bed
+- `sample_name`: Enter the name of the sample.
+- `artifact_filter_path`: Specify full path to 06_GF_criteria output folder.
+- `input_longgf`: Specify the full path to the sample_name 05_LongGF folder containing the different outputs of the LongGF parameters.
+- `input_jaffa`: Specify the full path to 05_JAFFA folder. 
+- `input_fusion_seek`: Specify the full path to 05_FusionSeeker folder. 
+- `bam_path`: Specify the full path to the sorted by position BAM file.
+- `genes_of_interest`: Specify the full path to the genes of interest file to prioritize the results.
+- `num_supporting_reads`: Specify the minimum number of supporting reads threshold.
+- `mitelman_db_gfs`: Specify the path to mitelman_db_fusion_names.txt
+- `chimer_db_gfs`: Specify the path to the ChimerDB4.0_fusions.txt
+- `cosmic_db_gfs`: Specify the full path to the cosmic_fusion_genes.tsv
+
+
+**Example Command:** 
+```
+python 06_GF_criteria.py /path/to/gencode.v44.annotation.bed example_sample14 /path/to/06_GF_criteria/ /path/to/05_LongGF/ /path/to/05_JAFFA/ /path/to/05_FusionSeeker/ /path/to/03_alignment_hg38/example_sample14/example_sample14-guppy6.sorted_position.bam /path/to/CHOP_Fusion_Panel_genes.txt 2 /path/to/fusion_names.txt /path/to/ChimerDB4.0_fusions.txt /path/to/cosmic_fusion_genes.tsv > 06_criteria.out 
+```
+- note the backslashes are necessary in the input and output paths specified in the command
+
+
+**Expected Output:** Within the '04_longreadsum' folder 
+```
+all_fusions_genes_of_interest_filtered.tsv  all_fusions_num_support_reads_filtered.tsv  example_sample14_all_longgf.tsv    example_sample14_unique_longgf.tsv  literature_cross_referenced_output.tsv
+all_fusions_genes_of_interest.tsv           example_sample14_all_FusionSeeker.tsv       example_sample14_fusionseeker.tsv  final_output_no_readIDs.tsv         longgf_unique_orientation_check.tsv
+all_fusions_LGF_J_FS.tsv                    example_sample14_all_JAFFA.tsv              example_sample14_jaffa.tsv         final_output.tsv                    longgf_unique_strandness.tsv
+```
+
+**Example Contents of `final_output.tsv` Folder:**
+```
+Fusion Name     Gene 1 Symbol   Gene 1 Breakpoint       Gene 2 Symbol   Gene 2 Breakpoint       Supporting Reads        Read IDs        Literature Cross Reference      GF Program
+KIAA1549:BRAF   KIAA1549        chr7:138867973  BRAF    chr7:140787583  40      03dec4eb-8641-40bc-9c86-61c02705affa,08c6f667-8e89-4e10-b013-a0a0c0f43744,0ee394f5-e4a1-4c43-8293-edc332d6b48b,1b37b834-49f5-4055-9e35-5c495a241751,1f88d9b5-4c28-48d4-b8ea-c80b3ea2f946,249369e5-ea14-4bb7-acbe-c2d8e11ae2e1,28c21dcd-1b00-4207-b5eb-f6b43e5cedbd,2e24c422-39dd-4b6f-9a9b-ccb98b3cb3c4,2fb319a5-bd11-4c04-b480-8f120bdb28b9,3ba42710-a6a2-4fcd-9c92-d44b148fed6a,3fc80036-1bfc-49ae-bd63-d424e6456495,43cd9a89-9470-47f0-a43d-bdf81691fb51,47d3a423-8a28-47bd-a50e-381ec6be022f,4f54aea0-6bbc-45ae-b0ad-6fa976ecfc1e,5156b766-fe9e-490c-aee6-697d694e85c5,5a719cda-b909-4212-8033-26d264d14389,618a60ec-5650-4c24-914e-28228dd6315a,63eb7086-a2f1-482c-b048-6856ecd2b0ed,6b6b8f23-f234-4adc-98cb-a355736feb72,7b950612-a91e-4afb-9eb3-73659d0285f4,7e56e365-97f1-46fa-bb1c-3ccb85045ea8,8e91e67e-98a7-4408-877a-cc6c7620ebeb,9b2a9942-2c38-432a-9263-36d89dde415b,9c4db01f-2f85-41f0-a843-4babf645078d,ae44809d-9074-4865-96ab-c8db51b3015c,af3a6867-8136-4a21-b371-29704d3d3128,b0c890e6-de00-488c-b208-f943cefa23fe,b0e9acd9-8e33-45f9-91d9-cefcef3063f3,b4ce4c4c-c70a-4714-a949-3d25a99fb58e,bc693a9b-48ee-44d0-be34-8a6825246188,c01d20d4-b3fc-47a3-b6ca-1f33fa766df4,c14fb703-6d11-4151-9cdb-6eda70c4a85e,c63aafef-89ab-4c0f-aa5c-a0025b8e5957,c732d8da-cb72-4cb6-81ec-09fb136dbce9,cb2b8543-748b-41f4-be41-96ca3fffca68,cea878af-060f-40b2-8bec-ff2812dcee98,eee6ee9d-0d87-49ab-ae55-fbfbd03b6fbc,f64b8865-79f2-4478-9128-2f88075b4622,f88b6c33-4915-4d56-a6ca-d07d24453c21,ffd7691d-da58-4bc5-a591-36a250797cae  KIAA1549:BRAF, KIAA1549:BRAF    LongGF
+KIAA1549:BRAF   KIAA1549        chr7:138867975  BRAF    chr7:140783192  33      0ee394f5-e4a1-4c43-8293-edc332d6b48b    KIAA1549:BRAF, KIAA1549:BRAF    JAFFA
+KIAA1549:BRAF   KIAA1549        chr7:138867975  BRAF    chr7:140787584  10      03dec4eb-8641-40bc-9c86-61c02705affa    KIAA1549:BRAF, KIAA1549:BRAF    JAFFA
+```
 
 
