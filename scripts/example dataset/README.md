@@ -21,7 +21,7 @@ Note the path to this folder for later.
 
 
 
-## GF Detection Pipeline 
+# GF Detection Pipeline 
 
 ## 0. Initialization of Directories `00_dir_setup.sh`
 In the folder where the downloaded scripts are stored, run the `00_dir_setup.sh` script to perform the initialization of the necessary directories, as seen below. 
