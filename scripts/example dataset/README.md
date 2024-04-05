@@ -84,6 +84,37 @@ example_sample14_pass_reads.fastq    example_sample14_pass_reads_trimmed1.fastq 
 ```
 
 
+### Example expected output from: `cutadapt_report_linked_adapters.txt`
+```
+=== Summary ===
+
+Total reads processed:                   2,948
+Reads with adapters:                     2,133 (72.4%)
+
+== Read fate breakdown ==
+Reads discarded as untrimmed:              815 (27.6%)
+Reads written (passing filters):         2,133 (72.4%)
+
+Total basepairs processed:     1,147,481 bp
+Total written (filtered):        541,240 bp (47.2%)
+```
+
+### Example expected output from: `cutadapt_report_single_adapters.txt`
+```
+=== Summary ===
+
+Total reads processed:                     815
+Reads with adapters:                       815 (100.0%)
+
+== Read fate breakdown ==
+Reads discarded as untrimmed:                0 (0.0%)
+Reads written (passing filters):           815 (100.0%)
+
+Total basepairs processed:       304,568 bp
+Total written (filtered):        220,695 bp (72.5%)
+```
+
+
 
 ## 3. Alignment to the hg38 Reference `03_alignment_hg38.sh`
 
@@ -100,9 +131,10 @@ bash -o 03_alignment_hg38.out 03_alignment_hg38.sh example_sample14 /path/to/02_
 ```
 
 
-**Expected Output:** Within the '02_combine_cutadapt' folder 
+**Expected Output:** Within the '03_alignment_hg38' folder 
 ```
-
+example_sample14-guppy6.bam  example_sample14-guppy6.sorted_name.bam      example_sample14-guppy6.sorted_position.bam.bai
+example_sample14-guppy6.sam  example_sample14-guppy6.sorted_position.bam
 ```
 
 
@@ -120,9 +152,42 @@ bash -o 03_alignment_hg38.out 03_alignment_hg38.sh example_sample14 /path/to/02_
 bash -o 04_longreadsum.out 04_longreadsum.sh example_sample14 /path/to/example_sample14/04_longreadsum /path/to/example_sample14/03_alignment_hg38/example_sample14/example_sample14-guppy6.bam /path/to/LongReadSum
 ```
 
-**Expected Output:** Within the '02_combine_cutadapt' folder 
+**Expected Output:** Within the '04_longreadsum' folder 
+```
+bam_summary.txt  img  st_bam_statistics_dynamic.html  st_bam_statistics.html
 ```
 
+### Example expected output from: `bam_summary.txt`
+```
+Longest read length     1527
+N50 read length 280
+Mean read length        258.46
+Median read length      229
+GC%     47.71
+
+Total number of mapped reads    2948
+Total number of mapped bases    761935
+Longest mapped read length      1527
+N50 mapped read length  280
+Mean mapped read length 258.46
+Median mapped read length       229
+GC%     47.71
+
+Total number of primary alignments      2948
+Total number of secondary alignments    65
+Total number of supplementary alignments        176
+Total number of reads with secondary alignments 59
+Total number of reads with supplementary alignments     166
+Total number of reads with both secondary and supplementary alignments  16
+Total number of reads with forward alignments   1671
+Total number of reads with reverse alignments   1277
+Total number of reverse alignment       1277
+
+Total number of matched bases   667869
+Total number of mismatched bases        39937
+Total number of insertions      13855
+Total number of deletions       13039
+Total number of soft clipped bases      168149
 ```
 
 
