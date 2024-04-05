@@ -71,6 +71,60 @@ There is one fastq file within the pass folder named, `fastq_runid_d1615b727f9b8
 - `error_rate_trim1` and `error_rate_trim2`: Cutadapt error rate denoted for both trimming steps. 
 - `num_occurances_trim1` and `num_occurances_trim2`: Reads with fewer than the specified occurrences of a specified adapter were trimmed, denoted for both trimming steps. 
 
+**Example Command:** 
+```
+bash -o 02_combine_cutadapt.out 02_combine_cutadapt.sh example_sample14 /path/to/01_redo_basecalling/example_sample14/01_redo_basecalling/example_sample14/pass /mnt/isilon/wang_lab/karly/project/Marilyn-Li-Samples/gene_fusion_samples1-29/example_sample14/02_combine_cutadapt AGATCGGAAGAGCACACGTCTGAACTCCAGTCA ACACTCTTTCCCTACACGACGCTCTTCCGATCT AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT TGACTGGAGTTCAGACGTGTGCTCTTCCGATCT 0.3 0.3 10 20
+```
+
+**Expected Output:** Within the '02_combine_cutadapt' folder 
+```
+cutadapt_report_linked_adapters.txt  example_sample14_pass_reads_final_trimmed.fastq     example_sample14_pass_reads_trimmed2.fastq
+cutadapt_report_single_adapters.txt  example_sample14_pass_reads_final_trimmed.fastq.gz  example_sample14_pass_reads_untrimmed1.fastq
+example_sample14_pass_reads.fastq    example_sample14_pass_reads_trimmed1.fastq          example_sample14_pass_reads_untrimmed.fastq
+```
+
+
+
+## 3. Alignment to the hg38 Reference `03_alignment_hg38.sh`
+
+**Base Command:** `bash 03_alignment_hg38.sh sample_name input_fastq output_dir REF_GENOME REF_SPLICE`
+- `sample_name`: Enter the name for the sample.
+- `input_fastq`: Specify the full path to the final trimmed FASTQ file.
+- `output_dir`: Specify the full path to 03_alignment_hg38 output. 
+- `REF_GENOME`: Specify the full path to the hg38 reference genome file (in FASTA format).
+- `REF_SPLICE`: Specify the full path to the BED file containing splice site annotations for hg38.
+
+**Example Command:** 
+```
+bash -o 03_alignment_hg38.out 03_alignment_hg38.sh example_sample14 /path/to/02_combine_cutadapt/example_sample14/example_sample14_pass_reads_final_trimmed.fastq  /path/to/example_sample14/03_alignment_hg38 /path/to/ref_genome_hg38/hg38.fa /path/to/gene_fusion_gtf_ref/gencode.v44.annotation.bed
+```
+
+
+**Expected Output:** Within the '02_combine_cutadapt' folder 
+```
+
+```
+
+
+
+
+## 4. Quality Check Analysis with LongReadSum  `04_longreadsum.sh`
+**Example Command:** `bash 04_longreadsum.sh sample_name output_dir input_BAM long_read_sum_path`
+- `sample_name`: Enter the name for the sample.
+- `output_dir`:  Specify the full path to 04_longreadsum output. 
+- `input_BAM`: Specify the full path to the aligned BAM file.
+-  `LongReadSum_path` : Specify the full path to the LongReadSum software. 
+
+**Example Command:** 
+```
+bash -o 04_longreadsum.out 04_longreadsum.sh example_sample14 /path/to/example_sample14/04_longreadsum /path/to/example_sample14/03_alignment_hg38/example_sample14/example_sample14-guppy6.bam /path/to/LongReadSum
+```
+
+**Expected Output:** Within the '02_combine_cutadapt' folder 
+```
+
+```
+
 
 
 
