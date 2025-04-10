@@ -58,15 +58,11 @@ Shared core components of the pipelines (center section, uncolored in the figure
 
 1. **CHOP Cancer Fusion Panel Filtering Pipeline** (top section, pink)
    - *Notebook:* `02_CHOP_Cancer_Panel_Filtering.ipynb`  
-   - Used for targeted fusion detection in cancer-specific genes
+   - Focuses on fusions involving genes targeted in the CHOP Cancer Fusion Panel, using a specified minimum supporting read threshold. 
 
 2. **Long-Read Whole Transcriptome Filtering Pipeline** (bottom section, orange)
-   - *Notebook:* `02_Long_Read_Transcriptome_Filtering.ipynb`  
-   - Used for unbiased, comprehensive fusion discovery across the whole transcriptome 
-
-You can choose either strategy based on your filtering preferences:
-- **Option 1** (CHOP Cancer Fusion Panel Genes, pink): Focuses on fusions involving genes targeted in the CHOP Cancer Fusion Panel, using a minimum supporting read threshold of 2 or 10.
-- **Option 2** (Whole Transcriptome, orange): Focuses on fusions involving cancer-related genes, filters out fusions present in parallel healthy samples, and annotates remaining fusions based on their gene involvement in disease-specific fusions from the Mitelman database. 
+   - *Notebook:* `02_Long_Read_Transcriptome_Filtering.ipynb`
+   - Focuses on fusions involving cancer-related genes, filters out fusions present in parallel healthy samples, and annotates remaining fusions based on their gene involvement in disease-specific fusions from the Mitelman database. 
 
 ---
 
