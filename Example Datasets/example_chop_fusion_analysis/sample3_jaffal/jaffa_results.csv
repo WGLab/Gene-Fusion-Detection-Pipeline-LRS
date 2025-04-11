@@ -1,0 +1,5 @@
+sample,fusion genes,chrom1,base1,strand1,chrom2,base2,strand2,gap (kb),spanning pairs,spanning reads,inframe,aligns,rearrangement,contig,contig break,classification,known
+sample3_pass_reads_final_trimmed,KMT2A:AFF1,chr11,118484975,+,chr4,87084120,+,Inf,0,21,TRUE,TRUE,TRUE,03e791d7-a838-44a4-bcfc-fc572c37aa2f,291,HighConfidence,Yes
+sample3_pass_reads_final_trimmed,KMT2A:AFF1,chr11,118484975,+,chr4,87084123,+,Inf,0,5,TRUE,TRUE,TRUE,1494da43-7bff-40da-b926-325377f41c42,136,HighConfidence,Yes
+sample3_pass_reads_final_trimmed,MS4A4E:RUNX1,chr11,60229912,-,chr21,34887096,-,Inf,0,1,FALSE,TRUE,TRUE,19ec1952-930c-4e58-9e62-effaf3aa1851,229,PotentialTransSplicing,-
+sample3_pass_reads_final_trimmed,RNF166:AKT1,chr16,88706171,-,chr14,104792722,-,Inf,0,1,FALSE,TRUE,TRUE,014363fe-2290-4971-9b68-85f4ac1bbe3d,203,PotentialTransSplicing,-
