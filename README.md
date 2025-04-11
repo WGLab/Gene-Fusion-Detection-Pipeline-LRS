@@ -21,6 +21,4 @@ These two cohorts allow for a comparative analysis between short-read and long-r
 For comprehensive information on using the GF detection pipeline analysis and filtering, navigate to the Analysis Scripts folder. Further instructions and explanations are available in the dedicated README file.  
 
 ## Contact
-If you have any questions, issues, or bugs, please post them on GitHub. 
-
-
+If you have any questions, issues, or bugs, please post them on GitHub. This work is part of the manuscript: _Combining Panel-Based and Whole Transcriptome Gene Fusion Detection Using Long-Read Sequencing_ (Manuscript in Preparation).
