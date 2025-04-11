@@ -1,0 +1,2 @@
+Sample Name	Initial Detected Unique GFs	Filter on CHOP and Cancer Census Genes	Filter on Read Support	Filter on Unrelated Genes	Filter on Consistent Strandness	Filter on GFs in GTEx Healthy Brain Samples	GFs in Fusion Reference Databases	Filter on Recurrent in 15.0% of Samples	Genes of GF in CNS Related Diseases - Both Genes Associated	Genes of GF in CNS Related Diseases - Only One Gene Associated	Genes of GF in CNS Related Diseases - No Gene Associated
+sampleK562_pool2	4031	468	26	18	17	16	3	3	1	2	0
