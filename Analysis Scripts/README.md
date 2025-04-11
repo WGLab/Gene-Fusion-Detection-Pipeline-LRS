@@ -4,7 +4,7 @@ This pipeline provides a streamlined approach for identifying, combining, and fi
 
 ## Overview
 
-Following external basecalling and alignment to the GRCh38 reference genome, the pipeline consists of **three core fusion detection programs**, which can be run using their **default settings** for standard usage:
+Following external basecalling, alignment to the GRCh38 reference genome, and LongReadSum for a quality check analysis, the pipeline primarily consists of **three core fusion detection programs**, which can be run using their **default settings** for standard usage:
 
 - [LongGF](https://github.com/WGLab/LongGF)  
 - [JAFFAL](https://github.com/Oshlack/JAFFA/wiki)  
