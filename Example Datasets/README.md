@@ -9,7 +9,7 @@
 - Example detected fusions from each GF detection program for a `Control K562 Sample` with corresponding combined summarized and filtered outputs are located in the `example_transcriptome_fusions` folder. 
 
 
-
+> All necessary literature references and Jupyter notebooks are available in the Analysis Scripts folder, be sure to set the appropriate input/output paths within each notebook as needed.
 
 
 
