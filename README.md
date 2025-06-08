@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/758069512.svg)](https://doi.org/10.5281/zenodo.15617148)
+
 # Gene Fusion Detection Pipeline with Long-Read Sequencing 
 The Gene Fusion (GF) Detection Pipeline is comprehensive bioinformatics workflow designed for GF detection from Oxford Nanopore long-read sequencing data analyzed with LongGF, JAFFAL, and FusionSeeker GF detection programs. 
 
