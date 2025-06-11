@@ -20,8 +20,7 @@ Python (3.9)
 
 The figure below outlines the GF Detection and Analysis Pipeline with two distinct filtering strategies. Shared core components of the pipelines (center section, uncolored in the figure) are common to both strategies. Regardless of filtering strategy chosen, the pipeline begins by re-basecalling the long-read sequencing data using a super high-accuracy model (represented by the diamond symbol), Cutadapt if using the CHOP Cancer Fusion Panel approach, otherwise/then alignment to GRCh38 reference genome. From there, the analysis splits into two distinct filtering strategy paths. 
 
- 
-![Image](https://github.com/user-attachments/assets/d5d6c620-43ae-4e6e-987f-14facbff0a19)
+![github_overview](https://github.com/user-attachments/assets/8f0ddf40-79b7-4ac5-b4b5-e11b4e6cf4d0)
 
 
 ### Input File Types
